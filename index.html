@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reaksjonstid</title>
+
+    <style>
+        .div {
+            background-color: rgb(71, 71, 85);
+            border-radius: 50%;
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: 70px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script>
+        // model
+        var startTime;
+        var finishTime;
+        var spentMilliseconds;
+        var spentSeconds;
+
+        let selectedLampIndex;
+        let lamp;
+        let html = '';
+        let cirkles = [0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0
+        ];
+
+        let score = [];
+
+        // view
+        function updateView() {
+            html = '';
+
+            startTime = new Date().getTime();
+
+            for (i = 0; i < cirkles.length; i++) {
+                lightOn(i);
+                if (i % 5 == 0) {
+                    html += `<div class="div" style="clear: left; ${lamp}"></div>`;
+                } else {
+                    html += `<div class="div" style="${lamp}"></div>`;
+                }
+            }
+            for (let x = score.length -1; x >= 0; x--) {
+                html += `<div>${score[x]}</div>`;
+            }
+            document.getElementById("app").innerHTML = html;
+
+            // for (let x = score.length; x > 0; x--) {
+            //     html += `<div>${score[x]}</div>`;
+            // }
+            // document.getElementById("app").innerHTML = html;
+        }
+
+        function lightOn(i) {
+            if (i == selectedLampIndex) {
+                lamp = 'background-color: yellow;" onclick="randomLampIndex() ';
+            }
+            else {
+                lamp='';
+            }
+        }
+
+        randomLampIndex();
+        // controller
+        function randomLampIndex() {
+
+            finishTime = new Date().getTime();
+
+            spentMilliseconds = Math.floor(finishTime - startTime);
+
+            spentSeconds = spentMilliseconds / 1000;
+
+            selectedLampIndex = Math.floor(Math.random() * cirkles.length)
+
+            scoreCount();
+            updateView();
+        }
+
+        function scoreCount() {
+            if (spentSeconds) {
+                score.push(spentSeconds);
+                score.length > 10 ? score.shift() : score; 
+            }
+            
+
+        }
+    </script>
+</body>
+
+</html>
