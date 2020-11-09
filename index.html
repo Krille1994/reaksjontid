@@ -61,15 +61,16 @@
                 }
             }
             html += `<h3>Average: ${average ? average.toFixed(3): ''}</h3>`
-            for (let x = score.length -1; x >= 0; x--) {
-                html += `<div>${score[x]}</div>`;
-            }
+            // for (let x = score.length -1; x >= 0; x--) {
+            //      html += `<div>${score[x]}</div>`;
+            // }
             document.getElementById("app").innerHTML = html;
 
             // for (let x = score.length; x > 0; x--) {
             //     html += `<div>${score[x]}</div>`;
             // }
             // document.getElementById("app").innerHTML = html;
+            
         }
 
         function lightOn(i) {
@@ -101,11 +102,12 @@
             sum = 0;
             if (spentSeconds) {
                 score.push(spentSeconds);
-                score.length > 20 ? score.shift() : score; 
+                score.length > 10 ? score.shift() : score; 
             }
             for (let y = 0; y < score.length; y++) {
                 sum += score[y];
             }
+            console.log(spentSeconds)
             average = sum / score.length;
             
 
