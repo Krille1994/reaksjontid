@@ -11,9 +11,9 @@
             background-color: rgb(71, 71, 85);
             border-radius: 50%;
             float: left;
-            width: 10px;
-            height: 10px;
-            margin: 70px;
+            width: 50px;
+            height: 50px;
+            margin: 10px;
         }
     </style>
 </head>
@@ -39,11 +39,14 @@
         ];
 
         let score = [];
+        let average;
+        let sum = 0;
+        
 
         // view
         function updateView() {
             html = '';
-
+            
             startTime = new Date().getTime();
 
             for (i = 0; i < cirkles.length; i++) {
@@ -56,7 +59,11 @@
             }
             for (let x = score.length -1; x >= 0; x--) {
                 html += `<div>${score[x]}</div>`;
+                // sum += parseInt(score[x]);
             }
+            // average = sum / score.length -1;
+            // html += `<h3>${average}</h3>`
+            html += `<h3>${average}</h3>`
             document.getElementById("app").innerHTML = html;
 
             // for (let x = score.length; x > 0; x--) {
@@ -91,13 +98,19 @@
         }
 
         function scoreCount() {
+            sum = 0;
             if (spentSeconds) {
                 score.push(spentSeconds);
                 score.length > 20 ? score.shift() : score; 
             }
+            for (let y = 0; y < score.length; y++) {
+                sum += score[y];
+            }
+            average = sum / score.length;
             
 
         }
+
     </script>
 </body>
 
