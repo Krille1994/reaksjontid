@@ -60,14 +60,10 @@
                     html += `<div class="div" style="${lamp}"></div>`;
                 }
             }
-            html += `<h3>Average: ${average.toFixed(3)}</h3>`
+            html += `<h3>Average: ${average ? average.toFixed(3): ''}</h3>`
             for (let x = score.length -1; x >= 0; x--) {
                 html += `<div>${score[x]}</div>`;
-                // sum += parseInt(score[x]);
             }
-            // average = sum / score.length -1;
-            // html += `<h3>${average}</h3>`
-            
             document.getElementById("app").innerHTML = html;
 
             // for (let x = score.length; x > 0; x--) {
