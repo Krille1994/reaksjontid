@@ -18,6 +18,10 @@
             height: 50px;
             margin: 10px;
         }
+        #app {
+            margin: 100px auto;
+            width : 600px;
+        }
     </style>
 </head>
 
@@ -44,6 +48,7 @@
         let score = [];
         let average;
         let sum = 0;
+        let clicks;
         
 
         // view
@@ -61,6 +66,7 @@
                 }
             }
             html += `<h3>Average: ${average ? average.toFixed(3): ''}</h3>`
+            html += `<h3>Lamps broken: ${clicks}</h3>`
             // for (let x = score.length -1; x >= 0; x--) {
             //      html += `<div>${score[x]}</div>`;
             // }
@@ -102,13 +108,14 @@
             sum = 0;
             if (spentSeconds) {
                 score.push(spentSeconds);
-                score.length > 10 ? score.shift() : score; 
             }
             for (let y = 0; y < score.length; y++) {
                 sum += score[y];
             }
             console.log(spentSeconds)
             average = sum / score.length;
+            clicks = score.length;
+            
             
 
         }
