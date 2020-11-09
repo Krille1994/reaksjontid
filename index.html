@@ -7,6 +7,9 @@
     <title>Reaksjonstid</title>
 
     <style>
+        body {
+            user-select: none;
+        }
         .div {
             background-color: rgb(71, 71, 85);
             border-radius: 50%;
@@ -63,7 +66,7 @@
             }
             // average = sum / score.length -1;
             // html += `<h3>${average}</h3>`
-            html += `<h3>${average}</h3>`
+            html += `<h3>Average: ${average}</h3>`
             document.getElementById("app").innerHTML = html;
 
             // for (let x = score.length; x > 0; x--) {
